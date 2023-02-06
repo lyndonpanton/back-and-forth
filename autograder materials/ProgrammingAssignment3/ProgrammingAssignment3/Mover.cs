@@ -54,8 +54,13 @@ public class Mover : MonoBehaviour
         transform.position = new Vector3(-2.5f, 0, 0);
 
         // add and run the timer
-        directionTimer = gameObject.GetComponent<Timer>();
+        directionTimer = gameObject.AddComponent<Timer>();
+        directionTimer.Duration = TimerDuration;
         directionTimer.Run();
+
+        //directionTimer = GetComponent<Timer>();
+        //directionTimer.Duration = TimerDuration;
+        //directionTimer.Run();
     }
 
     /// <summary>
@@ -64,7 +69,7 @@ public class Mover : MonoBehaviour
     public void Update()
     {
         // change direction as appropriate
-        if (!directionTimer.Running)
+        if (directionTimer.Finished)
         {
             directionMultiplier *= -1;
             DirectionTimer.Run();
@@ -77,7 +82,6 @@ public class Mover : MonoBehaviour
         position.x = position.x + (MoveAmountPerSecond * Time.deltaTime * directionMultiplier);
 
         transform.position = position;
-
     }
 
     #endregion
