@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
     #region Fields
 
     // timer duration
-    float totalSeconds = 0;
+    float totalSeconds = 1;
 
     // timer execution
     float elapsedSeconds = 0;
