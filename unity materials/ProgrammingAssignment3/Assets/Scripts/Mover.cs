@@ -54,7 +54,8 @@ public class Mover : MonoBehaviour
         transform.position = new Vector3(-2.5f, 0, 0);
 
         // add and run the timer
-        directionTimer = GetComponent<Timer>();
+        directionTimer = gameObject.GetComponent<Timer>();
+        directionTimer.Duration = TimerDuration;
         directionTimer.Run();
     }
 

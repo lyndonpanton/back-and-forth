@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 /// <summary>
@@ -53,7 +54,8 @@ public class Mover : MonoBehaviour
         transform.position = new Vector3(-2.5f, 0, 0);
 
         // add and run the timer
-
+        directionTimer = gameObject.GetComponent<Timer>();
+        directionTimer.Run();
     }
 
     /// <summary>
@@ -62,9 +64,19 @@ public class Mover : MonoBehaviour
     public void Update()
     {
         // change direction as appropriate
+        if (!directionTimer.Running)
+        {
+            directionMultiplier *= -1;
+            DirectionTimer.Run();
+        }
 
 
         // move game object
+        Vector3 position = transform.position;
+
+        position.x = position.x + (MoveAmountPerSecond * Time.deltaTime * directionMultiplier);
+
+        transform.position = position;
 
     }
 
